@@ -14,5 +14,5 @@
 .section {
   max-height: calc(100vh - 60px); /* Max height calculation */
   min-height: calc(50vh - 60px);
-  background: rgba(90, 10, 182, 0.274);
+  background: rgba(90, 10, 182, 0.089);
 }
