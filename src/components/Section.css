@@ -1,0 +1,18 @@
+/* styles.css */
+.full-height-width {
+  width: calc(100vh - 60px); /* Adjust width for viewport */
+  box-sizing: border-box;
+}
+
+.body-height {
+  min-height: calc(calc((100vh - 50px - 10px - 160px) / 2)); /* Height of the body, adjusted for header/footer */
+  max-height: calc(100vh - 50px - 80px - 10px + 5px);
+  overflow-y: scroll;
+
+}
+
+.section-max-height {
+  max-height: calc(100vh - 60px); /* Max height calculation */
+  min-height: calc(50vh - 60px);
+  background: rgba(4, 151, 132, 0.678);
+}
