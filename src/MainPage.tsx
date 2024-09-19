@@ -23,6 +23,14 @@ function MainPage() {
   const isSection2Maximized = () => section2State === 'maximized';
   const isSection3Maximized = () => section3State === 'maximized';
 
+  const isSection1Fullscreened = () => section1State === 'fullscreened';
+  const isSection2Fullscreened = () => section2State === 'fullscreened';
+  const isSection3Fullscreened = () => section3State === 'fullscreened';
+
+  const isSection1Hidden = () => section1State === 'hidden';
+  const isSection2Hidden = () => section2State === 'hidden';
+  const isSection3Hidden = () => section3State === 'hidden';
+
   const handleSectionClick = (section: string) => {
     setActiveSection(section);
   };
@@ -36,6 +44,17 @@ function MainPage() {
       if (state === 'minimize') {
         setSection2State('minimized');
       }
+      if (state === 'zoom-in'){
+        setSection2State('fullscreened');
+        setSection1State('hidden');
+        setSection3State('hidden');        
+      }
+
+      if (state === 'zoom-out'){
+        setSection2State('idle');
+        setSection1State('idle');
+        setSection3State('idle');        
+      }
     } else if (section === 'section3') {
       if (state === 'maximize') {
         if (section2State === 'maximized') { setSection2State('minimized') }
@@ -44,12 +63,33 @@ function MainPage() {
       if (state === 'minimize') {
         setSection3State('minimized');
       }
+      if (state === 'zoom-in'){
+        setSection3State('fullscreened');
+        setSection1State('hidden');
+        setSection2State('hidden');        
+      }
+      if (state === 'zoom-out'){
+        setSection2State('idle');
+        setSection1State('idle');
+        setSection3State('idle');        
+      }
     } else if (section === 'section1') {
       if (state === 'maximize') {
         setSection1State('maximized');
       }
       if (state === 'minimize') {
-        setSection1State('minimized');
+        
+        if (section1State !== 'fullscreened'){ setSection1State('minimized');}
+      }
+      if (state === 'zoom-in'){
+        setSection1State('fullscreened');
+        setSection2State('hidden');
+        setSection3State('hidden');        
+      }
+      if (state === 'zoom-out'){
+        setSection2State('idle');
+        setSection1State('idle');
+        setSection3State('idle');        
       }
     }
     setActiveSection(section);
@@ -70,22 +110,22 @@ function MainPage() {
 
 
       <div
-      className="flex-1 flex flex-col gap-[10px]"
+      className={`flex-1 flex flex-col gap-[10px] ${isSection1Fullscreened() ? 'hidden': ''}`}
       style={{
         maxHeight: 'calc(100vh - 60px)',
       }}
     >
 
-          <Section section='section2'
+          <Section fullscreen={isSection2Fullscreened()} isHidden={isSection2Hidden()} section='section2'
             minimized={isSection2Maximized()}
             activeSection={activeSection} handleState={(state) => handleState('section2', state)} handleSectionClick={(section) => handleSectionClick(section)} ><h1> Macros</h1><h2>silver biullte</h2> section1</Section>
-          <Section section='section3'
+          <Section fullscreen={isSection3Fullscreened()} isHidden={isSection3Hidden()} section='section3'
             minimized={isSection3Maximized()}
             activeSection={activeSection} handleState={(state) => handleState('section3', state)} handleSectionClick={(section) => handleSectionClick(section)} ><h1> Macros</h1><h2>fasdfsd</h2> section2</Section>
         </div>
 
 
-        <Section sideMinimized={true} section='section1'
+        <Section fullscreen={isSection1Fullscreened()} isHidden={isSection1Hidden()} sideMinimized={true} section='section1'
           minimized={isSection1Maximized()}
           activeSection={activeSection} handleState={(state) => handleState('section1', state)} handleSectionClick={(section) => handleSectionClick(section)} >
           <h1>        

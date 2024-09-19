@@ -5,6 +5,7 @@ interface SectionProps {
   sideMinimized?: Boolean;
   minimized: Boolean;
   fullscreen: Boolean;
+  isHidden: Boolean;
   section: string;
   activeSection: string;
   handleSectionClick: (section: string) => void;
@@ -12,7 +13,7 @@ interface SectionProps {
   children?: ReactNode;
 }
 
-const Section: React.FC<SectionProps> = ({ sideMinimized, section, minimized, fullscreen, activeSection, handleSectionClick, handleState, children }) => {
+const Section: React.FC<SectionProps> = ({ sideMinimized, section, minimized, fullscreen, isHidden, activeSection, handleSectionClick, handleState, children }) => {
   // Helper functions to extract specific elements
   const extractElement = (type: React.ElementType) => {
     const found = Children.toArray(children).find(child => React.isValidElement(child) && (child as ReactElement).type === type);
@@ -25,10 +26,10 @@ const Section: React.FC<SectionProps> = ({ sideMinimized, section, minimized, fu
 
 
   const shouldHideHeading = !subHeadingContent;
-  
+
   return (
     <section
-      className={`${minimized ? 'h-[40px]' : 'section-max-height'} ${(minimized && sideMinimized) ? 'w-[40px]' : "min-w-[49vw]"} relative flex-basis bg-[#262626] text-[#a1a1a1] rounded-[10px] box-border group ${activeSection === section ? 'border-green-500' : ''}`}
+      className={`${minimized ? 'h-[40px] flex-2' : 'section flex-1'} ${(minimized && sideMinimized) ? 'w-[40px]' : "min-w-[49vw]"} relative flex-basis bg-[#262626] text-[#a1a1a1] rounded-[10px] box-border group ${activeSection === section ? 'border-green-500' : ''} ${isHidden ? 'hidden' : ''}`}
       onClick={() => handleSectionClick(section)} // Use the section prop for the click handler
     >
       {/* Outset Border Effect */}
@@ -40,10 +41,49 @@ const Section: React.FC<SectionProps> = ({ sideMinimized, section, minimized, fu
         </div>
         {/* Only show icons on section hover */}
         <div className="absolute inset-0 flex items-center gap-[5px] p-[4px] justify-end opacity-0 group-hover:opacity-100">
-          <Maximize className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" />
-          <Minimize className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" />
-          {minimized && <ChevronUp className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" onClick={() => { console.log('down clicked'); handleState('minimize') }} />}
-          {!minimized && <ChevronDown className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" onClick={() => { console.log('up clicked'); handleState('maximize') }} />}
+          {!fullscreen && (
+            <>
+            <Maximize
+              className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]"
+              onClick={() => {
+                console.log('maximize clicked');
+                handleState('zoom-in');
+              }}
+            />
+            {minimized && (
+              <ChevronUp
+                className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]"
+                onClick={() => {
+                  console.log('chevron up clicked');
+                  handleState('minimize');
+                }}
+              />
+            )}
+
+            {!minimized && (
+              <ChevronDown
+                className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]"
+                onClick={() => {
+                  console.log('chevron down clicked');
+                  handleState('maximize');
+                }}
+              />
+            )}
+          </>
+          )}
+
+
+          {fullscreen && (
+
+          <Minimize
+            className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]"
+            onClick={() => {
+              console.log('minimize clicked');
+              handleState('zoom-out');
+            }}
+          />
+          )}
+
           {/* <ChevronRight className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" />
           <ChevronLeft className="hover:bg-[#464646] p-[5px] text-[#a1a1a1] h-[30px] w-[30px] rounded-[5px]" /> */}
         </div>
