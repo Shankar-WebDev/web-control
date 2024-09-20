@@ -1,40 +1,17 @@
 import React from 'react';
+import TwistPublisher from '../components/TwistPublisher';
+import LogSubscriber from '../components/LogSubscriber';
 
 const Topics = () => {
   return (
     <>
-        <div className='bg-red-900/20 rounded-[10px] h-[300px]'>Publisher Pane
+        <div className='bg-red-900/20 rounded-[10px]'>
+        <div>Publsher Pane</div>
+        <TwistPublisher/></div>
+        <div className='bg-red-900/20 rounded-[10px]'>
+        <div>Subscriber Pane</div>
+        <LogSubscriber/></div>
         
-        <button>publish</button></div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
-        <div>Subscriber Pane</div>
     </>
   );
 };
