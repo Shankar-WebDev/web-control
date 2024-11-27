@@ -75,7 +75,10 @@ class AddTwoInts {
 // }
 
 const ServiceCaller: React.FC = () => {
-    const BASE_URL = 'http://192.168.1.2:9090'; // Change this base URL as needed
+
+
+    // const BASE_URL = 'http://localhost:9091'; // Change this base URL as needed
+    const BASE_URL = 'http://192.168.1.2:8000'; // Change this base URL as needed
 
 
     const killPayload = (name: string) => {
@@ -110,9 +113,9 @@ const ServiceCaller: React.FC = () => {
     const buttons = [
 
 
-        // { name: 'Clear', endpoint: `${BASE_URL}/clear`, payload: null },
-        // { name: 'Reset', endpoint: `${BASE_URL}/reset`, payload: null },
-        // { name: 'Kill', endpoint: `${BASE_URL}/kill`, payload: killPayload('turtle1') },
+        { name: 'Clear', endpoint: `${BASE_URL}/clear`, payload: null },
+        { name: 'Reset', endpoint: `${BASE_URL}/reset`, payload: null },
+        { name: 'Kill', endpoint: `${BASE_URL}/kill`, payload: killPayload('turtle1') },
 
 
         { name: 'Start System', endpoint: `${BASE_URL}/nodelauncher`, payload: nodeLauncherPayload('start', 1) },
@@ -132,12 +135,12 @@ const ServiceCaller: React.FC = () => {
 
 
 
-        // { name: 'add 2+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(2), BigInt(5)) },
-        // { name: 'add 4+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(4), BigInt(8)) },
-        // { name: 'add 290+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(290), BigInt(5)) },
-        // { name: 'add 400+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(400), BigInt(8)) },
-        // { name: 'add 8002+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(8002), BigInt(5)) },
-        // { name: 'add 480+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(480), BigInt(8)) },
+        { name: 'add 2+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(2), BigInt(5)) },
+        { name: 'add 4+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(4), BigInt(8)) },
+        { name: 'add 290+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(290), BigInt(5)) },
+        { name: 'add 400+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(400), BigInt(8)) },
+        { name: 'add 8002+5', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(8002), BigInt(5)) },
+        { name: 'add 480+8', endpoint: `${BASE_URL}/add_two_ints`, payload: addTwoIntsPayload(BigInt(480), BigInt(8)) },
 
     ];
 
@@ -168,10 +171,9 @@ const ServiceCaller: React.FC = () => {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', endpoint, true);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-
         xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300) {
-                console.log('Payload sent:', payload);
+                console.log('Payload sent:', payload, 'to', endpoint);
                 console.log('Response received:', xhr.responseText);
                 // Parse the JSON response
                 const response = JSON.parse(xhr.responseText);

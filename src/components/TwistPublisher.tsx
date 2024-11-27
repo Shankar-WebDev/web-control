@@ -54,7 +54,8 @@ const TwistPublisher: React.FC = () => {
         twist.encode(writer);
         const encodedPayload = writer.data;
 
-        const restApi = 'http://192.168.1.2:9090/'; // Replace with your API URL
+        // const restApi = 'http://localhost:9091/'; // Replace with your API URL
+        const restApi = 'http://192.168.1.2:8000/'; // Replace with your API URL
         const scope = ''; // Replace with your scope
         const topicDrive = 'cmd_vel'; // Replace with your topic
         const keyExpr = `${scope}${topicDrive}`;
