@@ -1,16 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
-import Actions from './Pages/Actions';
+
+import { ModeOne, ModeTwo, ModeThree } from './Pages/Demos';
+
+import Introduction from './Pages/Introduction';
 import Services from './Pages/Services';
-import Topics from './Pages/Topics';
+
 function App() {
     return (
         <Routes>
             <Route path="/" element={<MainPage />}>
-                <Route index element={<div>hello</div>} />
-                <Route path="topics" element={<Topics />} />
+                <Route index element={<Introduction />} />
+                <Route path="mode1" element={<ModeOne />} />
+                <Route path="mode2" element={<ModeTwo />} />		                
+                <Route path="mode3" element={<ModeThree />} />
+                		                
                 <Route path="services" element={<Services />} />
-                <Route path="actions" element={<Actions />} />
             </Route>
         </Routes>
     );

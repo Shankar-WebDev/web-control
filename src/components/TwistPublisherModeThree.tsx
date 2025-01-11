@@ -55,7 +55,7 @@ const TwistPublisher: React.FC = () => {
         const encodedPayload = writer.data;
 
         // const restApi = 'http://localhost:9091/'; // Replace with your API URL
-        const restApi = 'http://192.168.1.2:8000/'; // Replace with your API URL
+        const restApi = '/robot1-zenoh-rest-server/'; // Replace with your API URL
         const scope = ''; // Replace with your scope
         const topicDrive = 'cmd_vel'; // Replace with your topic
         const keyExpr = `${scope}${topicDrive}`;

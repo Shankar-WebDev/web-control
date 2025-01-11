@@ -29,17 +29,17 @@ class NodeLauncher {
     }
 }
 
-class GoalPose {
-    type: string;
+//class GoalPose {
+  //  type: string;
 
-    constructor(type: string) {
-        this.type = type;
-    }
+//    constructor(type: string) {
+  //      this.type = type;
+//    }
 
-    encode(cdrWriter: CdrWriter) {
-        cdrWriter.string(this.type);
-    }
-}
+  //  encode(cdrWriter: CdrWriter) {
+    //    cdrWriter.string(this.type);
+ //   }
+//}
 
 
 class AddTwoInts {
@@ -78,7 +78,7 @@ const ServiceCaller: React.FC = () => {
 
 
     // const BASE_URL = 'http://localhost:9091'; // Change this base URL as needed
-    const BASE_URL = 'http://192.168.1.2:8000'; // Change this base URL as needed
+    const BASE_URL = '/robot1-zenoh-rest-server'; // Change this base URL as needed
 
 
     const killPayload = (name: string) => {
@@ -95,12 +95,12 @@ const ServiceCaller: React.FC = () => {
         return writer.data; // Return the encoded data
     };
 
-    const goalPayload = (type: string) => {
-        const goal = new GoalPose(type);
-        const writer = new CdrWriter();
-        goal.encode(writer);
-        return writer.data; // Return the encoded data
-    };
+    //const goalPayload = (type: string) => {
+      //  const goal = new GoalPose(type);
+     //   const writer = new CdrWriter();
+     //   goal.encode(writer);
+     //   return writer.data; // Return the encoded data
+    //};
 
     const addTwoIntsPayload = (a: bigint, b: bigint) => {
         const addTwoInts = new AddTwoInts(a, b);
@@ -117,7 +117,6 @@ const ServiceCaller: React.FC = () => {
         { name: 'Reset', endpoint: `${BASE_URL}/reset`, payload: null },
         { name: 'Kill', endpoint: `${BASE_URL}/kill`, payload: killPayload('turtle1') },
 
-
         { name: 'Start System', endpoint: `${BASE_URL}/nodelauncher`, payload: nodeLauncherPayload('start', 1) },
         { name: 'Stop System', endpoint: `${BASE_URL}/nodelauncher`, payload: nodeLauncherPayload('start', 0) },
         { name: 'Start motor', endpoint: `${BASE_URL}/nodelauncher`, payload: nodeLauncherPayload('motor', 1) },
@@ -131,7 +130,6 @@ const ServiceCaller: React.FC = () => {
 
         // { name: 'Localize at Pose', endpoint: `${BASE_URL}/pose_setting`, payload: goalPayload('amcl') },
         // { name: 'Go to Pose', endpoint: `${BASE_URL}/pose_setting`, payload: goalPayload('goal') },
-
 
 
 
@@ -170,6 +168,7 @@ const ServiceCaller: React.FC = () => {
     const handleRequest = (endpoint: string, payload: any) => {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', endpoint, true);
+        console.log("endpoint sending to is ", endpoint);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
         xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300) {

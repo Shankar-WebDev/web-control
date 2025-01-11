@@ -1,5 +1,5 @@
 import React, { ReactNode, Children, ReactElement } from 'react';
-import { Maximize, Minimize, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, ArrowLeftFromLine } from 'lucide-react'; // Ensure the path is correct for your icons
+import { Maximize, Minimize, ChevronDown, ChevronUp } from 'lucide-react'; // Ensure the path is correct for your icons
 import './Section.css'
 interface SectionProps {
   sideMinimized?: Boolean;

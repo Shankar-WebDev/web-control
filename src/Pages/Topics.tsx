@@ -1,5 +1,5 @@
-import React from 'react';
-import TwistPublisher from '../components/TwistPublisher';
+
+import TwistPublisher from '../components/TwistPublisherModeOne';
 import LogSubscriber from '../components/LogSubscriber';
 
 const Topics = () => {
@@ -14,6 +14,6 @@ const Topics = () => {
         
     </>
   );
-};
+};          
 
 export default Topics;
