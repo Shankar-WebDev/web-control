@@ -5,20 +5,32 @@ import { ModeOne, ModeTwo, ModeThree } from './Pages/Demos';
 
 import Introduction from './Pages/Introduction';
 import Services from './Pages/Services';
+import RosServiceWebSocket from './components/RosServiceWebSocket';
+
+// import Subscriber from './components/subscriber';
 
 function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<MainPage />}>
-                <Route index element={<Introduction />} />
-                <Route path="mode1" element={<ModeOne />} />
-                <Route path="mode2" element={<ModeTwo />} />		                
-                <Route path="mode3" element={<ModeThree />} />
-                		                
-                <Route path="services" element={<Services />} />
-            </Route>
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />}>
+        <Route index element={<Introduction />} />
+        <Route path="mode1" element={<ModeOne />} />
+        <Route path="mode2" element={<ModeTwo />} />
+        <Route path="mode3" element={<ModeThree />} />
+        <Route path="services" element={<Services />} />
+        <Route path ='ros' element= {<RosServiceWebSocket/>}/>
+      </Route>
+    </Routes>
+    // <Routes>
+    //     <Route path="/" element={<Subscriber/>}>
+
+    //     </Route>
+    // </Routes>
+    // <Routes>
+    //   {/* <Route path="/" element={<ServiceResponse/>}> */}
+    //   <Route path="/" element={<RosServiceWebSocket />}></Route>
+    // </Routes>
+  );
 }
 
 export default App;
